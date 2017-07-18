@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.0</version>
+    <date>2017-06-28T12:20:00Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template TEST Configuration</template>
+            <name>Template TEST Configuration</name>
+            <description/>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <macros>
+                <macro>
+                    <macro>{$AWS_ACCESS_KEY}</macro>
+                    <value></value>
+                </macro>
+                <macro>
+                    <macro>{$AWS_SECRET_KEY}</macro>
+                    <value></value>
+                </macro>
+                <macro>
+                    <macro>{$REGION}</macro>
+                    <value>us-east-1</value>
+                </macro>
+            </macros>
+            <templates/>
+        </template>
+    </templates>
+    <triggers/>
+    <graphs/>
+</zabbix_export>

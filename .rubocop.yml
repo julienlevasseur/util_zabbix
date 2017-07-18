@@ -1,0 +1,6 @@
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 150
+Style/BracesAroundHashParameters:
+  Enabled: false
