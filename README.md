@@ -50,7 +50,7 @@ Because you know what type of object you import in your wrapper cookbook, you ca
 
 # Usage
 
-Zabbix except a connection hash to be given to the resources :
+Zabbix expect a connection hash to be given to the resources :
 
 ```ruby
 zbx_connection = {
