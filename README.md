@@ -66,6 +66,7 @@ zbx_connection = {
 
 host_name = 'host.example.com'
 
+# Creation
 zabbix_host host_name do
   connection zbx_connection
   interfaces [{ type: 1, main: 1, useip: 1, ip: '127.0.0.1', dns: host_name, port: 10050 }]
@@ -75,6 +76,7 @@ zabbix_host host_name do
   inventory nil
 end
 
+# Deletetion
 zabbix_host host_name do
   connection zbx_connection
   action :delete
@@ -87,12 +89,14 @@ end
 
 host_name = 'host.example.com'
 
+# Creation
 zabbix_macro '{$TEST}' do
   connection zbx_connection
   host_name host_name
   value 'TEST'
 end
 
+# Deletetion
 zabbix_macro '{$TEST}' do
   connection zbx_connection
   host_name host_name
@@ -103,6 +107,8 @@ end
 ## Template
 
 ```ruby
+
+# This cookbook file is the template in its XML format
 cookbook_file '/tmp/zabbix_template_test.xml' do
   source 'zabbix_template_test.xml'
   owner 'root'
@@ -122,6 +128,7 @@ rules = {
   }
 }
 
+# Creation
 util_zabbix_configuration 'config_test' do
   connection zbx_connection
   rules rules
@@ -129,6 +136,7 @@ util_zabbix_configuration 'config_test' do
   not_if {template_exists?('Template TEST Configuration')}
 end
 
+# Deletetion
 util_zabbix_template 'Template TEST Configuration' do
   connection zbx_connection
   action :delete
