@@ -14,7 +14,6 @@ host_name = 'util_zabbix_smoke_test'
 zabbix_host host_name do
   connection zbx_connection
   interfaces [{ type: 1, main: 1, useip: 1, ip: '127.0.0.1', dns: host_name, port: 10050 }]
-  host host_name
   groups ['Linux servers']
   templates ['Template OS Linux']
   inventory_mode 0

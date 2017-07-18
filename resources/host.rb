@@ -2,9 +2,7 @@ resource_name :zabbix_host
 provides :zabbix_host
 
 property :name, String, name_property: true
-property :host_name, String
 property :connection, Hash, sensitive: true
-property :host, String
 property :interfaces, Array
 property :groups, Array
 property :templates, Array
