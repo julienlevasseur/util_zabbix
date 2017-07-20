@@ -2,6 +2,10 @@
 # https://github.com/express42/zabbixapi/blob/master/examples/Templates.md
 # https://www.zabbix.com/documentation/3.0/manual/api/reference/template
 # rubocop:enable LineLength
+
+resource_name :zabbix_template
+provides :zabbix_template
+
 property :name, String, name_property: true
 property :groups, Array
 property :connection, Hash, sensitive: true

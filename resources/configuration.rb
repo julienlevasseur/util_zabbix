@@ -2,6 +2,10 @@
 # http://www.rubydoc.info/gems/zabbixapi/ZabbixApi/Configurations
 # https://www.zabbix.com/documentation/3.0/manual/api/reference/configuration/import
 # rubocop:enable LineLength
+
+resource_name :zabbix_configuration
+provides :zabbix_configuration
+
 property :name, String, name_property: true
 property :format, String, default: 'xml'
 property :rules, Hash, sensitive: true

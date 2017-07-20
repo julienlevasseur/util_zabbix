@@ -19,7 +19,7 @@ action :create do
           macro: new_resource.name,
           value: new_resource.value
         )
-        Chef::Log.debug("#{name}: Creating Zabbix Macro [#{new_resource.name}] for Host [#{new_resource.host_name}]")
+        Chef::Log.debug("#{new_resource.name}: Creating Zabbix Macro [#{new_resource.name}] for Host [#{new_resource.host_name}]")
       rescue LoadError
         Chef::Log.error("Failed to create Zabbix Macro [#{new_resource.name}] for Host [#{new_resource.host_name}]")
       end

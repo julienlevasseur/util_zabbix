@@ -8,10 +8,17 @@ class Chef
       rescue LoadError
         Chef::Log.debug('Did not find zabbixapi installed. Installing now')
       
-        chef_gem 'zabbixapi' do
-          compile_time true
+        gem_package 'zabbixapi' do
+        #chef_gem 'zabbixapi' do
+          #compile_time true
+          source '/home/vagrant/zabbixapi/zabbixapi-3.1.0.gem'
+          #clear_sources true
           action :install
         end
+        #chef_gem 'zabbixapi' do
+        #  compile_time true
+        #  action :install
+        #end
       
         require 'zabbixapi'
       end
@@ -64,6 +71,16 @@ class Chef
       
       def usermacro_exists?(macro_name, host_name)
         return true if get_macro_id(macro_name, host_name).is_a? Integer
+      end
+
+      def get_valuemapid(valuemap_name)
+        zbx_client.valuemaps.all.each do |valuemapname, valuemapid|
+          return valuemapid.to_i if valuemapname == valuemap_name
+        end
+      end
+
+      def valuemap_exists?(valuemap_name)
+        return true if get_valuemapid(valuemap_name).is_a? Integer
       end
     end
   end

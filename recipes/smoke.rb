@@ -32,6 +32,23 @@ zabbix_macro '{$SMOKETEST}' do
   action :delete
 end
 
+mappings = [
+  {
+    value: '0',
+    newvalue: 'Down'
+  }
+]
+
+zabbix_valuemap 'TEST' do
+  connection zbx_connection
+  mappings mappings
+end
+
+zabbix_valuemap 'TEST' do
+  connection zbx_connection
+  action :delete
+end
+
 zabbix_host host_name do
   connection zbx_connection
   action :delete
@@ -56,14 +73,14 @@ rules = {
   }
 }
 
-util_zabbix_configuration 'config_test' do
+zabbix_configuration 'config_test' do
   connection zbx_connection
   rules rules
   source lazy { ::File.open('/tmp/zabbix_template_test.xml', 'rb').read }
   not_if {template_exists?('Template TEST Configuration')}
 end
 
-util_zabbix_template 'Template TEST Configuration' do
+zabbix_template 'Template TEST Configuration' do
   connection zbx_connection
   action :delete
 end

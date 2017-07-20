@@ -55,7 +55,7 @@ action :create_or_update do
           })
         else
           zbx_client.hosts.create_or_update(
-            host: new_resource.host,
+            host: new_resource.name,
             interfaces: new_resource.interfaces,
             groups: g,
             templates: t,
