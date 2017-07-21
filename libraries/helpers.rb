@@ -25,11 +25,16 @@ class Chef
 
       def zbx_client
         load_zabbix_gem
+
+        @url      = ENV['ZBX_URL'] || connection[:zabbix_server_url]
+        @user     = ENV['ZBX_USER'] || connection[:zabbix_server_user]
+        @password = ENV['ZBX_PASSWORD'] || connection[:zabbix_server_password]
+
         @zbx_client ||=
           ZabbixApi.connect(
-            url: connection[:zabbix_server_url],
-            user: connection[:zabbix_server_user],
-            password: connection[:zabbix_server_password]
+            url: @url,
+            user: @user,
+            password: @password
           )
       end
 

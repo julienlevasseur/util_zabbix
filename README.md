@@ -50,9 +50,13 @@ Because you know what type of object you import in your wrapper cookbook, you ca
 
 # Usage
 
-Zabbix expect a connection hash to be given to the resources :
+Zabbix expect credentials exported as env vars or a connection hash to be given to the resources :
 
 ```ruby
+ENV['ZBX_URL']      = 'https://zabbix.example.com/zabbix/api_jsonrpc.php'
+ENV['ZBX_USER']     = 'username'
+ENV['ZBX_PASSWORD'] = 'P4s5w0rd'
+
 zbx_connection = {
   zabbix_server_url: 'https://zabbix.example.com/zabbix/api_jsonrpc.php',
   zabbix_server_user: 'user',
@@ -68,7 +72,6 @@ host_name = 'host.example.com'
 
 # Creation
 zabbix_host host_name do
-  connection zbx_connection
   interfaces [{ type: 1, main: 1, useip: 1, ip: '127.0.0.1', dns: host_name, port: 10050 }]
   groups ['Linux servers']
   templates ['Template OS Linux']
@@ -78,7 +81,6 @@ end
 
 # Deletetion
 zabbix_host host_name do
-  connection zbx_connection
   action :delete
 end
 ```
@@ -91,14 +93,12 @@ host_name = 'host.example.com'
 
 # Creation
 zabbix_macro '{$TEST}' do
-  connection zbx_connection
   host_name host_name
   value 'TEST'
 end
 
 # Deletetion
 zabbix_macro '{$TEST}' do
-  connection zbx_connection
   host_name host_name
   action :delete
 end
@@ -130,7 +130,6 @@ rules = {
 
 # Creation
 util_zabbix_configuration 'config_test' do
-  connection zbx_connection
   rules rules
   source lazy { ::File.open('/tmp/zabbix_template_test.xml', 'rb').read }
   not_if {template_exists?('Template TEST Configuration')}
@@ -138,7 +137,25 @@ end
 
 # Deletetion
 util_zabbix_template 'Template TEST Configuration' do
-  connection zbx_connection
+  action :delete
+end
+```
+
+## ValueMap
+
+```ruby
+mappings = [
+  {
+    value: '0',
+    newvalue: 'Down'
+  }
+]
+
+zabbix_valuemap 'TEST' do
+  mappings mappings
+end
+
+zabbix_valuemap 'TEST' do
   action :delete
 end
 ```

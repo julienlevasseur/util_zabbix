@@ -8,8 +8,8 @@ provides :zabbix_configuration
 
 property :name, String, name_property: true
 property :format, String, default: 'xml'
-property :rules, Hash, sensitive: true
-property :source, String, sensitive: true
+property :rules, Hash
+property :source, String
 property :connection, Hash, sensitive: true
 
 # rules example for a template :
